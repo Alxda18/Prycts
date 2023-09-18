@@ -1,0 +1,64 @@
+@startuml Pacman
+Class Jugador
+Class Pacman
+
+
+Class Personaje
+Class PacMan
+Class Fantasma
+Class Blinky
+Class Inky
+Class Pinky
+Class Clyde
+
+Class Mapa
+Class Laberitno
+
+Class Puntaje
+
+
+Class Item
+Class PuntoPeque
+Class Pildora
+
+Class Fruta
+
+Class Cereza
+Class Fresa
+Class Naranja
+Class Manzana
+Class Uva
+Class Galaxia
+Class Campana
+Class Llave
+
+Jugador o-- Pacman 
+Pacman *-- Mapa
+Pacman *-- Puntaje
+Laberitno <|-- Mapa
+
+Pacman *-- Personaje
+PacMan <|-- Personaje
+Fantasma <|-- Personaje
+
+Blinky <|-- Fantasma
+Inky <|-- Fantasma
+Pinky <|-- Fantasma
+Clyde <|-- Fantasma
+
+PacMan o-- Item
+
+Fruta <|-- Item
+Pildora <|-- Item
+PuntoPeque <|-- Item
+
+Cereza <|-- Fruta
+Fresa <|-- Fruta
+Naranja <|-- Fruta
+Manzana <|-- Fruta
+Uva <|-- Fruta
+Galaxia <|-- Fruta
+Campana <|-- Fruta
+Llave <|-- Fruta
+
+@enduml
