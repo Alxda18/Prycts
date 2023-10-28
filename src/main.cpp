@@ -1,40 +1,70 @@
-#include <iostream>
-#include <Mascota.hpp>
+
+#include <dibujo.hpp>
+#include <curses.h>
+#include <unistd.h>
+#include <Ventana.hpp>
+#include <list>
+#include <PacMan.hpp>
+#include <Fantasma.hpp>
+#include <PuntoPeque.hpp>
+
+
+using namespace std;
 
 int main(int argc, char const *argv[])
 {
 
-    //  Mascota m1;
-    // Mascota m2;
+Ventana Ventana;
+PacMan* pacman1= new PacMan(5,0);
+Fantasma* fantasma= new Fantasma(120,50);
+PuntoPeque* punto = new PuntoPeque (30,50);
 
-    // m1.Comer();
-    // m2.Comer();
 
-    std::cout << "La capacidad de int es" << sizeof(int) << std::endl;
-    std::cout << "La capacidad de float es" << sizeof(float) << std::endl;
-    std::cout << "La capacidad de double es" << sizeof(double) << std::endl;
-    std::cout << "La capacidad de char es" << sizeof(char) << std::endl;
-    std::cout << "La capacidad de bool es" << sizeof(bool) << std::endl;
-    std::cout << "La capacidad de mascota es " << sizeof(Mascota) << std::endl;
+list<dibujo*> dibujos;
 
-    int a = 4;
-    std::cout << "a capacidad del dato es " << sizeof(a) << std::endl;
-    std::cout << "el contenido del dato es " << a << std::endl;
-    std::cout << "la direccion es " << &a << std::endl;
+dibujos.push_back(pacman1);
+dibujos.push_back(fantasma);
 
-    // c  Memoria dinamica
-    std::cout << "Mascota en C" << std::endl;
-    Mascota *mascotaC = (Mascota *)malloc(sizeof(Mascota));
-    mascotaC->Inicializar();
-    mascotaC->DecirNombre();
-    mascotaC->Destruir();
-    free(mascotaC);
 
-    // c++
-    std::cout << "Mascota en c++" << std::endl;
-    Mascota *mCpp = new Mascota();
-    mCpp->DecirNombre();
-    mCpp->Destruir();
+list<Actualizable*> actualizables;
+
+actualizables.push_back(pacman1);
+actualizables.push_back(fantasma);
+
+
+while (true)
+{
+
+int key = getch();
+if (key == 'q' || key == 'Q')
+{
+    //salir juego
+    break;
+}
+
+if (key == 'a' || key == 'A' || key == KEY_LEFT){
+
+    pacman1 ->DesplazarIzquierda();
+}
+
+if (key == 'd' || key == 'D' || key == KEY_RIGHT){
+    pacman1 -> DesplazarDerecha();
+}
+
+if (key == 'w' || key == 'W' || key == KEY_UP){
+
+    pacman1 ->DesplazarArriba();
+}
+
+if (key == 's' || key == 'S' || key == KEY_DOWN){
+    pacman1 -> DesplazarAbajo();
+}
+
+Ventana.Actualizar(actualizables);
+Ventana.Dibujar(dibujos);
+
+}
+endwin();
 
     return 0;
 }

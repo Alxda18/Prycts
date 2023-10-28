@@ -1,4 +1,9 @@
 @startuml Pacman
+
+Class Ventana
+Class Dibujo
+Class Actualizable
+
 Class Jugador
 Class Pacman
 

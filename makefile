@@ -1,10 +1,6 @@
-br: clean compilar ejecutar
+bin/main : src/main.cpp include/*
+	c++ src/main.cpp -o bin/main -lcurses -I include
 
-compilar : src/main.cpp
-	g++ src/main.cpp -o bin/mascotas -I include
+run : bin/main
 
-ejecutar : bin/mascotas
-	./bin/mascotas
-
-clean : bin/mascotas
-	rm bin/mascotas
+	./bin/main
