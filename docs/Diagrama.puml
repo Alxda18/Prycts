@@ -37,6 +37,9 @@ Class Galaxia
 Class Campana
 Class Llave
 
+Ventana --* Dibujo
+Ventana --|> Actualizable
+
 Jugador o-- Pacman 
 Pacman *-- Mapa
 Pacman *-- Puntaje
